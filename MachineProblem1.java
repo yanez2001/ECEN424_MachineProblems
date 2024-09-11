@@ -1,5 +1,6 @@
-/* Yanez Saucedo
+/* Yanez Saucedo, Evan Tsoi
  * Machine Problem #1 - ECEN 424
+ * Group 35
  * Texas A&M University - Fall 2024
  * 
  * 
