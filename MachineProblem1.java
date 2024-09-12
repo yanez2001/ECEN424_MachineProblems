@@ -12,7 +12,7 @@
 
 
 // create a class called calculator
-public class calculator {
+public class Calculator {
 
     private String name;
 
