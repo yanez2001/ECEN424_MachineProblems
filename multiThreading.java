@@ -16,14 +16,29 @@
  * The main thread should wait for all the threads to complete, and then print the resultant 
  * product matrix. Verify that this produces the same result as the normal method.
 */
+
+import java.util.Random;
+
 class matrixMultiplication
 {
-    
+    // generate randomness
+    Random rand = new Random();
+
+    // matrix multiplication
+    for(int i = 0; i < 20; i++){
+        for(int j = 0; j < 20; j++){
+            // fix
+        }
+    }
 }
 public class multiThreading
 {
     public static void main(String[] args) 
     {
+        // initialize the matrices size
+        double[][] A = new double[20][20];
+        double[][] B = new double[20][20];
+
         int n = 5; // the number of threads needed
         for(int i = 0; i < n; i++)
         {
