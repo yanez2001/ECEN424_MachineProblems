@@ -31,18 +31,42 @@ class matrixMultiplication
         }
     }
 }
-public class multiThreading
+public class multiThreading extends Thread
 {
     public static void main(String[] args) 
     {
         // initialize the matrices size
         double[][] A = new double[20][20];
         double[][] B = new double[20][20];
+        double[][] resultant = new  double [20][20];
+
+        // generate randomness for matrices
+        Radnom rand = new Random();
+        for(int i = 0; i < 20; i++){
+            for(j = 0; j < 20; j++){
+                A[i][j] = rand.nextDouble();
+                B[i][j] = rand.nextDouble();
+            }
+        }
 
         int n = 5; // the number of threads needed
         for(int i = 0; i < n; i++)
         {
             //threading here
+        }
+
+        // print out the matrix
+        System.out.println('This is the resultant matrix: ');
+        printMatrix(resultant);
+    }
+
+    public static void printMatrix(double[][] matrix)
+    {
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix.length; j++){
+                // print out the matrix
+                System.out.printf("%.2f", matrix[i][j]);
+            }
         }
     }
 }
