@@ -1,4 +1,4 @@
-/* Yanez Saucedo, Nick ___ 
+/* Yanez Saucedo, Nick Caso 
  * Texas A&M University - Fall 2024
  * ECEN424 Machine Probelm 2
  * 
