@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "multiThreading",
+            "request": "launch",
+            "mainClass": "multiThreading",
+            "projectName": "ECEN424_MachineProblems_86445925"
+        },
+        {
+            "type": "cmake",
+            "request": "launch",
+            "name": "CMake: Configure project",
+            "cmakeDebugType": "configure",
+            "clean": false,
+            "configureAll": false
+        }
+    ]
+}

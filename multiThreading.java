@@ -19,18 +19,36 @@
 
 import java.util.Random;
 
-class matrixMultiplication
-{
-    // generate randomness
-    Random rand = new Random();
+class matrixMultiplication implements Runnable {
+    public double[][] A;  // First matrix
+    private double[][] B;  // Second matrix
+    private double[][] resultant;  // Resultant matrix (product)
+    private int initialRow; // Starting row for this thread
+    private int lastRow;   // Ending row for this thread
 
-    // matrix multiplication
-    for(int i = 0; i < 20; i++){
-        for(int j = 0; j < 20; j++){
-            // fix
+    // Constructor to initialize the thread with a portion of work
+    public matrixMultiplication(double[][] A, double[][] B, double[][] resultant, int initialRow, int lastRow) {
+        this.A = A;
+        this.B = B;
+        this.resultant = resultant;
+        this.initialRow = initialRow;
+        this.lastRow = lastRow;
+    }
+
+    @Override
+    public void run() {
+        // Perform matrix multiplication for the assigned rows
+        for (int i = initialRow; i < lastRow; i++) {
+            for (int j = 0; j < 20; j++) {
+                resultant[i][j] = 0; // Initialize element
+                for (int k = 0; k < 20; k++) {
+                    resultant[i][j] += A[i][k] * B[k][j];
+                }
+            }
         }
     }
 }
+
 public class multiThreading extends Thread
 {
     public static void main(String[] args) 
@@ -41,22 +59,36 @@ public class multiThreading extends Thread
         double[][] resultant = new  double [20][20];
 
         // generate randomness for matrices
-        Radnom rand = new Random();
+        Random rand = new Random();
         for(int i = 0; i < 20; i++){
-            for(j = 0; j < 20; j++){
+            for(int j = 0; j < 20; j++){
                 A[i][j] = rand.nextDouble();
                 B[i][j] = rand.nextDouble();
             }
         }
 
+        Thread[] threads = new Thread[5];
+
         int n = 5; // the number of threads needed
         for(int i = 0; i < n; i++)
         {
-            //threading here
+            int initialRow = i * 4;
+            int lastRow = (i + 1) * 4;
+
+            threads[i] = new Thread(new matrixMultiplication(A, B, resultant, initialRow, lastRow)); 
+            threads[i].start(); 
+        }
+        // wait for threads to compute using join()
+        for (int i = 0; i < 5; i++) {
+            try {
+                threads[i].join(); // Wait for the thread to finish
+            } catch (InterruptedException e) {
+                System.out.println("Main thread was interrupted.");
+            }
         }
 
         // print out the matrix
-        System.out.println('This is the resultant matrix: ');
+        System.out.println ("This is the resultant matrix: ");
         printMatrix(resultant);
     }
 
@@ -65,8 +97,9 @@ public class multiThreading extends Thread
         for(int i = 0; i < matrix.length; i++){
             for(int j = 0; j < matrix.length; j++){
                 // print out the matrix
-                System.out.printf("%.2f", matrix[i][j]);
+                System.out.printf("[%.2f, ", matrix[i][j]);
             }
+            System.out.println();
         }
     }
 }

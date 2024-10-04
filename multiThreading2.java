@@ -1,4 +1,3 @@
-package MP2;
 /* Yanez Saucedo, Nick Caso 
  * Texas A&M University - Fall 2024
  * ECEN424 Machine Probelm 2
@@ -50,7 +49,7 @@ class matrixMultiplication implements Runnable {
     }
 }
 
-public class multiThreading extends Thread
+public class multiThreading2 extends Thread
 {
     public static void main(String[] args) 
     {
@@ -76,7 +75,7 @@ public class multiThreading extends Thread
             int initialRow = i * 4;
             int lastRow = (i + 1) * 4;
 
-            threads[i] = new Thread(new matrixMultiplication(A, B, resultant, initialRow, lastRow)); /
+            threads[i] = new Thread(new matrixMultiplication(A, B, resultant, initialRow, lastRow)); 
             threads[i].start(); 
         }
         // wait for threads to compute using join()
@@ -98,8 +97,9 @@ public class multiThreading extends Thread
         for(int i = 0; i < matrix.length; i++){
             for(int j = 0; j < matrix.length; j++){
                 // print out the matrix
-                System.out.printf("%.2f", matrix[i][j]);
+                System.out.printf("%.2f, ", matrix[i][j]);
             }
+            System.out.println();
         }
     }
 }
