@@ -66,6 +66,10 @@ public class multiThreading2 extends Thread
                 B[i][j] = rand.nextDouble();
             }
         }
+        System.out.println("This is the Matrix A: ");
+        printMatrix(A);
+        System.out.println("This is the Matrix B: ");
+        printMatrix(B);
 
         Thread[] threads = new Thread[5];
 
@@ -77,16 +81,19 @@ public class multiThreading2 extends Thread
 
             threads[i] = new Thread(new matrixMultiplication(A, B, resultant, initialRow, lastRow)); 
             threads[i].start(); 
+            // print out the threads and the rows that each thread holds
+            System.out.println("Thread " + (i+1) + " has started: Initial Row = " + initialRow + ", Last Row = " + lastRow);
         }
         // wait for threads to compute using join()
         for (int i = 0; i < 5; i++) {
             try {
                 threads[i].join(); // Wait for the thread to finish
+                // print to see if the threads finished
+                System.out.println("Thread " + (i+1) + " has completed");
             } catch (InterruptedException e) {
                 System.out.println("Main thread was interrupted.");
             }
         }
-
         // print out the matrix
         System.out.println ("This is the resultant matrix: ");
         printMatrix(resultant);
@@ -97,10 +104,11 @@ public class multiThreading2 extends Thread
         for(int i = 0; i < matrix.length; i++){
             for(int j = 0; j < matrix.length; j++){
                 // print out the matrix
-                System.out.printf("%.2f, ", matrix[i][j]);
+                System.out.printf("%.4f,", matrix[i][j]);
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
 
